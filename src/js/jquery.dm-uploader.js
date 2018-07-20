@@ -69,7 +69,7 @@
     onDocumentDragEnter: function(){},
     onDocumentDragLeave: function(){}
   };
-  
+
   var DmUploaderFile = function(file, widget)
   {
     this.data = file;
@@ -121,10 +121,10 @@
       url: file.widget.settings.url,
       type: file.widget.settings.method,
       dataType: file.widget.settings.dataType,
-      data: fd,
+      data: file.data,
       headers: file.widget.settings.headers,
       cache: false,
-      contentType: false,
+      contentType: file.data.type,
       processData: false,
       forceSync: false,
       xhr: function() { return file.getXhr(); },
@@ -468,7 +468,7 @@
       }
 
       this.queue.push(file);
-      
+
       nFiles++;
     }
 
@@ -578,7 +578,7 @@
           return false;
         }
       }
-      
+
       // Trying to Start an upload by ID
       if (file) {
         if (file.status === FileStatus.CANCELLED) {
